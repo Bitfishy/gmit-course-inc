@@ -1,59 +1,47 @@
 
 /*
- * DepthSensor CLASS DEFINITION
+ * DepthSensor CLASS DEFINITION:
  */
 class depthSensor {
   private:
-    byte PIN_ID;
+    // Declare variable to read the input on analog pin 1:
+    byte pinID;
 
-    boolean ledState = LOW;
-
-    //unsigned long timeLedOn;
-    //unsigned long timeLedOff;
-
-    unsigned long nextChangeTime = 0;
+    unsigned long timeOn; // Declaration for time on variable :
+    unsigned long nextChangeTime = 0; // variable to reset time to 0:
+    int val = 0; // Variable to store the value read:
+    float voltage = 10;
 }
+
   public:
-    DepthSensor(byte PIN_ID, unsigned long timeLedOn, unsigned long timeLedOff) {
-      this->PIN_ID = PIN_ID;
-    //  this->timeLedOn = timeLedOn;
-    //  this->timeLedOff = timeLedOff;
-
-      pinMode(PIN_ID, OUTPUT);
+//Constructer: Function with two parameters:
+    depthSensor(byte pinVal, unsigned long interval,) {
+      //Declare pinVal as a parameter:
+      this->pinID = pinVal;
+       //Declare interval as a parameter:
+      this->timeOn = interval;
+      // Secound part of the depthSensor function but with variable argumenmts?
+      pinMode(pinID, INPUT);
     }
 
-
-// the loop routine runs over and over again forever:
-void loop() {
-    // read the input on analog pin 1:
-   int sensorValue = analogRead(A1);
-    // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
-   float voltage = sensorValue * (5.0 / 1023.0);
-   // Converts the analog reading to cm:
-   float distance = -22.19*voltage+57.66;
-}
-
-/*
-    // Checks whether it is time to turn on or off the LED.
+    // Checks whether it is time to turn on depthSensor:
     void check() {
+      // Millis function:
       unsigned long currentTime = millis();
-
+      // If statement with conditions to utilise millis function:
       if(currentTime >= nextChangeTime) {
-
-        if(ledState) {
-          // LED is currently turned On. Turn Off LED.
-          ledState = LOW;
-          nextChangeTime = currentTime + timeLedOff;
+        // When the current time is equal to nextChangeTime then nextChangeTime becomes equal to currentTime on the next interval:
+          nextChangeTime = currentTime + timeOn;
         }
-        else{
-          // LED is currently turned Off. Turn On LED.
-          ledState = HIGH;
-          nextChangeTime = currentTime + timeLedOn;
-        }
-
-        digitalWrite(pinLED, ledState);
-      }
     }
+    // GetValue function:
+     float getValue(){
+       
+       // Convert the analog reading (which goes from 0 - 1023) to a voltage (0 - 5V):
+       float voltage = pinVal * (5.0 / 1023.0);
+       // Converts the analog reading to cm:
+       float distance = -22.19*voltage+57.66;
+
 };
 
-*/
+

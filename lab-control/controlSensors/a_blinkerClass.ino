@@ -1,5 +1,5 @@
 
-/* 
+
 \\  BLINKER CLASS DEFINITION
  
 class Blinker {
@@ -46,4 +46,3 @@ class Blinker {
       }
     }
 };
-*/
