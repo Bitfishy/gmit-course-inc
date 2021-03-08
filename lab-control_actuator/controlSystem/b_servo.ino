@@ -6,8 +6,7 @@
   private:
     byte pinServo;
     unsigned long timeOn;  // declaration for time on variable:
-   // int angleVal;          // variable for angle value:
-    
+   
   public:
     // Constructor to input private variables into public
       servoActuator(byte pinVal,unsigned long interval){
